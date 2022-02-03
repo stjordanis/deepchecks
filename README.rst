@@ -86,10 +86,7 @@ optional `Conditions <#condition>`_ added to them.
 
 To see it in action, we recommend `trying it out <#try-it-out>`_.
 
-To run an existing suite all you need to do is to import the suite and run 
-it with the required (suite-dependent) input parameters. If you have a ``model`` object,
-train and test datasets (``ds_train`` and ``ds_test``),
-you can run the ``full_suite`` with many of the the deepchecks checks using:
+Example for running a suite on given `datasets`_ and a `supported model`_:
 
 .. code:: python
 
@@ -97,116 +94,25 @@ you can run the ``full_suite`` with many of the the deepchecks checks using:
    suite = full_suite()
    suite.run(train_dataset=train_dataset, test_dataset=train_dataset, model=model)
 
-Let's walk through a full simple example of running the ``single_dataset_integrity`` suite, which requires only a single `Dataset`_,
-(and can also directly on a ``pd.DataFrame``).
-The list of all built-in suites for tabular data can be found `here <deepchecks/tabular/suites>`_.
+Which will result in the following output of all checks and conditions in the suite:
+<img src="docs/images/full_suite_output.gif" width="750">
 
-Load the data:
+Note that some other suites (e.g. ``single_dataset_integrity`` don't require a model as part of the input)
 
-.. code:: python
-
-   from deepchecks.datasets.classification import iris
-   iris_ds = iris.load_data(as_train_test=False)
-
-
-.. _Dataset:
+.. _datasets:
    https://docs.deepchecks.com/en/stable/
    user-guide/dataset_object.html
    ?utm_source=github.com&utm_medium=referral&
    utm_campaign=readme&utm_content=running_a_suite
 
-Run the suite:
+.. _supported model:
+   https://docs.deepchecks.com/en/stable/
+   user-guide/supported_models.html
+   ?utm_source=github.com&utm_medium=referral&
+   utm_campaign=readme&utm_content=running_a_suite 
 
-.. code:: python
 
-   from deepchecks.suites import single_dataset_integrity
-   suite = single_dataset_integrity()
-   suite.run(iris_ds)
-
-Will result in printing the suite's output, showing checks that had conditions on them and also that didn't have conditions or outputs.
-The check with conditions starts with a summary table:
-
-   .. raw:: html
-
-      <h1 id="summary_NKMZO">Single Dataset Integrity Suite</h1>
-      <p>The suite is composed of various checks such as: Mixed Data Types, Is Single Value, String Mismatch, etc...<br>
-             Each check may contain conditions (which will result in pass / fail / warning, represented by 
-         <span style="color: green;display:inline-block">✓</span> /
-         <span style="color: red;display:inline-block">✖</span> /
-         <span style="color: orange;font-weight:bold;display:inline-block">!</span>
-         ),
-             as well as other outputs such as plots or tables.<br>
-             Suites, checks and conditions can all be modified (see the 
-             <a href='https://docs.deepchecks.com/en/stable/examples/guides/create_a_custom_suite.html?utm_source=github.com&utm_medium=referral&utm_campaign=readme&utm_content=suite_output_link'>Create a Custom Suite</a> tutorial).</p>
-
-   .. raw:: html
-
-      <hr style="background-color: black;border: 0 none;color: black;height: 1px;">
-
-   .. raw:: html
-
-      <h2>Conditions Summary</h2>
-
-   .. raw:: html
-
-      <table id="T_7735f_">
-       <thead>
-         <tr>
-           <th class="col_heading level0 col0">Status</th>
-           <th class="col_heading level0 col1">Check</th>
-           <th class="col_heading level0 col2">Condition</th>
-           <th class="col_heading level0 col3">More Info</th>
-         </tr>
-       </thead>
-       <tbody>
-         <tr>
-           <td id="T_7735f_row0_col0" class="data row0 col0"><div style="color: red;text-align: center">✖</div></td>
-           <td id="T_7735f_row0_col1" class="data row0 col1">Single Value in Column - Test Dataset</td>
-           <td id="T_7735f_row0_col2" class="data row0 col2">Does not contain only a single value for all columns</td>
-           <td id="T_7735f_row0_col3" class="data row0 col3">Columns containing a single value: ['target']</td>
-         </tr>
-         <tr>
-           <td id="T_7735f_row1_col0" class="data row1 col0"><div style="color: orange;text-align: center;font-weight:bold">!</div></td>
-           <td id="T_7735f_row1_col1" class="data row1 col1">Data Duplicates - Test Dataset</td>
-           <td id="T_7735f_row1_col2" class="data row1 col2">Duplicate data is not greater than 0%</td>
-           <td id="T_7735f_row1_col3" class="data row1 col3">Found 2.00% duplicate data</td>
-         </tr>
-         <tr>
-          <td id="T_7735f_row2_col0" class="data row2 col0"><div style="color: green;text-align: center">✓</div></td>
-           <td id="T_7735f_row2_col1" class="data row2 col1">Mixed Nulls - Test Dataset</td>
-           <td id="T_7735f_row2_col2" class="data row2 col2">Not more than 1 different null types for all columns</td>
-           <td id="T_7735f_row2_col3" class="data row2 col3"></td>
-         </tr>
-         <tr>
-           <td id="T_7735f_row3_col0" class="data row3 col0"><div style="color: green;text-align: center">✓</div></td>
-           <td id="T_7735f_row3_col1" class="data row3 col1">Mixed Data Types - Test Dataset</td>
-           <td id="T_7735f_row3_col2" class="data row3 col2">Rare data types in all columns are either more than 10.00% or less than 1.00% of the data</td>
-           <td id="T_7735f_row3_col3" class="data row3 col3"></td>
-         </tr>
-         <tr>
-           <td id="T_7735f_row4_col0" class="data row4 col0"><div style="color: green;text-align: center">✓</div></td>
-           <td id="T_7735f_row4_col1" class="data row4 col1">String Mismatch - Test Dataset</td>
-           <td id="T_7735f_row4_col2" class="data row4 col2">No string variants for all columns</td>
-           <td id="T_7735f_row4_col3" class="data row4 col3"></td>
-         </tr>
-         <tr>
-           <td id="T_7735f_row5_col0" class="data row5 col0"><div style="color: green;text-align: center">✓</div></td>
-           <td id="T_7735f_row5_col1" class="data row5 col1">String Length Out Of Bounds - Test Dataset</td>
-           <td id="T_7735f_row5_col2" class="data row5 col2">Ratio of outliers not greater than 0% string length outliers for all columns</td>
-           <td id="T_7735f_row5_col3" class="data row5 col3"></td>
-         </tr>
-         <tr>
-           <td id="T_7735f_row6_col0" class="data row6 col0"><div style="color: green;text-align: center">✓</div></td>
-           <td id="T_7735f_row6_col1" class="data row6 col1">Special Characters - Test Dataset</td>
-           <td id="T_7735f_row6_col2" class="data row6 col2">Ratio of entirely special character samples not greater than 0.10% for all columns</td>
-           <td id="T_7735f_row6_col3" class="data row6 col3"></td>
-         </tr>
-       </tbody>
-      </table>
-
-Followed by the visual outputs of the checks, that isn't appended here for brevity.
-In the following section 
-you can see an example of how the output of a single check may look.
+In the following section you can see an example of how the output of a single check without a condition may look.
 
 Running a Check
 ----------------
