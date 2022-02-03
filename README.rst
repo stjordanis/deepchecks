@@ -95,7 +95,12 @@ Example for running a suite on given `datasets`_ and a `supported model`_:
    suite.run(train_dataset=train_dataset, test_dataset=train_dataset, model=model)
 
 Which will result in the following output of all checks and conditions in the suite:
-<img src="docs/images/full_suite_output.gif" width="750">
+
+.. raw:: html
+
+   <p align="center">
+      <img src="docs/images/full_suite_output.gif" width="750">
+   </p>
 
 Note that some other suites (e.g. ``single_dataset_integrity`` don't require a model as part of the input)
 
