@@ -2,7 +2,7 @@
 
    <!--
      ~ ----------------------------------------------------------------------------
-     ~ Copyright (C) 2021 Deepchecks (https://www.deepchecks.com)
+     ~ Copyright (C) 2021-2022 Deepchecks (https://www.deepchecks.com)
      ~
      ~ This file is part of Deepchecks.
      ~ Deepchecks is distributed under the terms of the GNU Affero General
@@ -64,7 +64,7 @@ Using conda
 
 .. code:: bash
 
-   conda install -c deepchecks deepchecks
+   conda install -c conda-forge deepchecks
 
 
 Try it Out!
@@ -88,17 +88,27 @@ To see it in action, we recommend `trying it out <#try-it-out>`_.
 
 To run an existing suite all you need to do is to import the suite and run 
 it with the required (suite-dependent) input parameters.
-The list of all built-in suites can be found `here <deepchecks/suites>`_.
 
-Let's take the "iris" dataset as an example
+If you have a `model` object, train and test datasets: `ds_train`, `ds_test`, you can run the `full_suite`
+with many of the the deepchecks checks using:
 
 .. code:: python
 
-   from sklearn.datasets import load_iris
-   iris_df = load_iris(return_X_y=False, as_frame=True)['frame']
+   from deepchecks.suites import full_suite
+   suite = full_suite()
+   suite.run(train_dataset=train_dataset, test_dataset=train_dataset, model=model)
 
-and run the `single_dataset_integrity` suite, which requires only a single `Dataset`_
-and can run also directly on a `pd.DataFrame`, like in the following example.
+Let's walk through a simple example of running the `single_dataset_integrity` suite, which requires only a single `Dataset`_,
+(and can also directly on a `pd.DataFrame`).
+The list of all built-in suites for tabular data can be found `here <deepchecks/tabular/suites>`_.
+
+Load the data:
+
+.. code:: python
+
+   from deepchecks.datasets.classification import iris
+   iris_ds = iris.load_data(as_train_test=False)
+
 
 .. _Dataset:
    https://docs.deepchecks.com/en/stable/
@@ -106,11 +116,13 @@ and can run also directly on a `pd.DataFrame`, like in the following example.
    ?utm_source=github.com&utm_medium=referral&
    utm_campaign=readme&utm_content=running_a_suite
 
+Run the suite:
+
 .. code:: python
 
    from deepchecks.suites import single_dataset_integrity
    suite = single_dataset_integrity()
-   suite.run(iris_df)
+   suite.run(iris_ds)
 
 Will result in printing the suite's output, that starts with a summary
 of the check conditions
@@ -286,14 +298,14 @@ Suite
 
 An ordered collection of checks, that can have conditions added to them.
 The Suite enables displaying a concluding report for all of the Checks
-that ran. See the list of `predefined existing suites`_
+that ran. See the list of `predefined existing suites`_ for tabular data
 to learn more about the suites you can work with directly and also to
 see a code example demonstrating how to build your own custom suite.
 The existing suites include default conditions added for most of the checks.
 You can edit the preconfigured suites or build a suite of your own with a collection
 of checks and optional conditions.
 
-.. _predefined existing suites: deepchecks/suites
+.. _predefined existing suites: deepchecks/tabular/suites
 
 .. include:: 
 
