@@ -92,7 +92,7 @@ Example for running a suite on given `datasets`_ and with a `supported model`_:
    suite = full_suite()
    suite.run(train_dataset=train_dataset, test_dataset=train_dataset, model=model)
 
-Which will result in the following output of all checks and conditions in the suite:
+Which will result in a report that looks like this:
 
 .. raw:: html
 
