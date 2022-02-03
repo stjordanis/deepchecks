@@ -84,9 +84,7 @@ Running a Suite
 A `Suite <#suite>`_ runs a collection of `Checks <#check>`_ with
 optional `Conditions <#condition>`_ added to them.
 
-To see it in action, we recommend `trying it out <#try-it-out>`_.
-
-Example for running a suite on given `datasets`_ and a `supported model`_:
+Example for running a suite on given `datasets`_ and with a `supported model`_:
 
 .. code:: python
 
@@ -102,7 +100,14 @@ Which will result in the following output of all checks and conditions in the su
       <img src="docs/images/full_suite_output.gif" width="750">
    </p>
 
+See the `full example here`_.
+
 Note that some other suites (e.g. ``single_dataset_integrity`` don't require a model as part of the input)
+
+.. _full example here:
+   https://docs.deepchecks.com/en/stable/
+   examples/guides/quickstart_in_5_minutes.html?
+   utm_source=github.com&utm_medium=referral&utm_campaign=readme&utm_content=try_it_out
 
 .. _datasets:
    https://docs.deepchecks.com/en/stable/
@@ -208,9 +213,12 @@ Suite
 
 An ordered collection of checks, that can have conditions added to them.
 The Suite enables displaying a concluding report for all of the Checks
-that ran. See the list of `predefined existing suites`_ for tabular data
+that ran.
+
+See the list of `predefined existing suites`_ for tabular data
 to learn more about the suites you can work with directly and also to
 see a code example demonstrating how to build your own custom suite.
+
 The existing suites include default conditions added for most of the checks.
 You can edit the preconfigured suites or build a suite of your own with a collection
 of checks and optional conditions.
@@ -249,15 +257,20 @@ subset of the following:
 
 -  Test data (which the model isn't exposed to) with labels
 
--  A model compatible with scikit-learn API that you wish to validate
-   (e.g. RandomForest, XGBoost)
+-  A `supported model`_ (e.g. scikit-learn models, XGBoost, any model implementing the `predict` method in the required format)
+
+Supported Data Types
+~~~~~~~~~~~~~~~~~~~~
+
+Currently the package supports tabular data.
+Stay tuned for the upcoming Computer Vision release.
+
+When Should I Run Deepchecks
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Deepchecks validation accompanies you from the initial phase when you
 have only raw data, through the data splits, and to the final stage of
-having a trained model that you wish to evaluate. Accordingly, each
-phase requires different assets for the validation.
-
-See more about typical usage scenarios and the built-in suites in the
+having a trained model that you wish to evaluate. See more about typical usage scenarios and the built-in suites in the
 `docs <https://docs.deepchecks.com/?utm_source=github.com&utm_medium=referral&utm_campaign=readme&utme_content=what_do_you_need_in_order_to_start_validating>`__.
 
 
