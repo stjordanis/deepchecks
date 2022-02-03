@@ -102,7 +102,7 @@ Which will result in the following output of all checks and conditions in the su
 
 See the `full example here`_.
 
-Note that some other suites (e.g. ``single_dataset_integrity`` don't require a model as part of the input)
+Note that some other suites (e.g. ``single_dataset_integrity``) don't require a model as part of the input.
 
 .. _full example here:
    https://docs.deepchecks.com/en/stable/
