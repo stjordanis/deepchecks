@@ -87,9 +87,7 @@ optional `Conditions <#condition>`_ added to them.
 To see it in action, we recommend `trying it out <#try-it-out>`_.
 
 To run an existing suite all you need to do is to import the suite and run 
-it with the required (suite-dependent) input parameters.
-
-If you have a `model` object, train and test datasets: `ds_train`, `ds_test`, you can run the `full_suite`
+it with the required (suite-dependent) input parameters. If you have a `model` object, train and test datasets (`ds_train` and `ds_test`), you can run the ``full_suite``
 with many of the the deepchecks checks using:
 
 .. code:: python
