@@ -87,8 +87,9 @@ optional `Conditions <#condition>`_ added to them.
 To see it in action, we recommend `trying it out <#try-it-out>`_.
 
 To run an existing suite all you need to do is to import the suite and run 
-it with the required (suite-dependent) input parameters. If you have a `model` object, train and test datasets (`ds_train` and `ds_test`), you can run the ``full_suite``
-with many of the the deepchecks checks using:
+it with the required (suite-dependent) input parameters. If you have a ``model`` object,
+train and test datasets (``ds_train`` and ``ds_test``),
+you can run the ``full_suite`` with many of the the deepchecks checks using:
 
 .. code:: python
 
@@ -96,8 +97,8 @@ with many of the the deepchecks checks using:
    suite = full_suite()
    suite.run(train_dataset=train_dataset, test_dataset=train_dataset, model=model)
 
-Let's walk through a simple example of running the `single_dataset_integrity` suite, which requires only a single `Dataset`_,
-(and can also directly on a `pd.DataFrame`).
+Let's walk through a full simple example of running the ``single_dataset_integrity`` suite, which requires only a single `Dataset`_,
+(and can also directly on a ``pd.DataFrame``).
 The list of all built-in suites for tabular data can be found `here <deepchecks/tabular/suites>`_.
 
 Load the data:
@@ -122,8 +123,8 @@ Run the suite:
    suite = single_dataset_integrity()
    suite.run(iris_ds)
 
-Will result in printing the suite's output, that starts with a summary
-of the check conditions
+Will result in printing the suite's output, showing checks that had conditions on them and also that didn't have conditions or outputs.
+The check with conditions starts with a summary table:
 
    .. raw:: html
 
@@ -203,8 +204,8 @@ of the check conditions
        </tbody>
       </table>
 
-Followed by the visual outputs of all of the checks that are in that
-suite, that isn't appended here for brevity. In the following section 
+Followed by the visual outputs of the checks, that isn't appended here for brevity.
+In the following section 
 you can see an example of how the output of a single check may look.
 
 Running a Check
